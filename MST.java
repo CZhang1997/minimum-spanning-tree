@@ -175,14 +175,19 @@ public class MST extends GraphAlgorithm<MST.MSTVertex> {
         }
 
 	if (args.length > 1) { choice = args[1]; }
-	in = new java.util.Scanner(new java.io.File("mst-10k-30k-1085305.txt"));
+	//in = new java.util.Scanner(new java.io.File("mst-10k-30k-1085305.txt"));
+	String graph = "5 6   1 2 3 1 4 5 4 5 9 1 5 6 2 5 7 2 3 5 ";
+	in = new java.util.Scanner(graph);
 	
 	Graph g = Graph.readGraph(in);
         Vertex s = g.getVertex(1);
 
 	Timer timer = new Timer();
 	MST m = mst(g, s, choice);
-	System.out.println("Algorithm: " + m.algorithm + "\n" + m.wmst);
+	System.out.println("Algorithm: " + m.algorithm + "\nThe minimum weigth is " + m.wmst);
+	for(Edge e : m.mst) {
+		System.out.println("From " + e.fromVertex().getName() + " To " + e.toVertex().getName());
+	}
 	System.out.println(timer.end());
     }
 }
